@@ -127,7 +127,8 @@
 - name: Apply app
   shell: |
     mkdir -p /lab && chmod -R 770 /lab
-    wget https://how64bit.com/lab-wordpress-k8s-ec2/{db,wp}.yml -P /lab
+    wget https://how64bit.com/lab-wordpress-k8s-ec2/db.yml -P /lab
+    wget https://how64bit.com/lab-wordpress-k8s-ec2/wp.yml -P /lab
     kubectl apply -f /lab/.
   when:
     - ansible_facts['hostname'] == 'master'
