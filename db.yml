@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  labels:
+    app: db
+spec:
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: mysql:5.7
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: root
+          - name: MYSQL_DATABASE
+            value: wp
+          - name: MYSQL_USER
+            value: wp
+          - name: MYSQL_PASSWORD
+            value: wp
+        volumeMounts:
+          - name: db
+            mountPath: /var/lib/mysql
+      volumes:
+        - name: db
+          hostPath:
+            path: /data
+            type: Directory
+  selector:
+    matchLabels:
+      app: db
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+spec:
+  type: ClusterIP
+  ports:
+    - targetPort: 3306
+      port: 3306
+  selector:
+    app: db
