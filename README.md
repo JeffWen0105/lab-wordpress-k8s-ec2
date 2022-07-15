@@ -1,4 +1,12 @@
-# 在 EC2上 一鍵部屬高可性 WordPress 在 Ks8
+# 在 EC2上 一鍵部屬高可性 WordPress 在 Ks8 
+
+## 架構圖
+
+透過 K8s + Nginx Load Balance 達成應用高可用架構
+
+![](https://i.imgur.com/AHVikHH.png)
+
+
 
 
 ## 功能說明
@@ -22,5 +30,79 @@ k8s 啟動 Wordpress 及 mysql 服務
 ```
 
 
+
+EC2 創建 DEMO
+
+![](https://i.imgur.com/AuMXHDK.png)
+
+
+
+
 ## Quick Start
 
+>透過 Docker 快速創建 Terraform & Ansible 環境及 Iac Code。
+
+
+1. 啟動建立好的環境。
+
+```bash
+docker run --rm -it jeffwen0105/iac-ec2-k8s bash
+```
+
+2.  使用 vi 編輯 credentials ，將 AWS 具備創建 VPC 及 EC2 的 credentials 貼上。
+
+```ini
+[default]
+aws_access_key_id=<YOUR aws_access_key_id>
+aws_secret_access_key=<YOUR aws_secret_access_key>
+```
+
+
+
+3.  執行自動部屬腳本。
+
+```bash
+bash run.sh
+```
+
+
+## 一般操作方式
+
+0. 環境準備 : 需要具備 Terraform 、 Ansible 、 Git 相依套件
+
+1. 下載 IaC 原始碼
+
+```
+git clone https://github.com/JeffWen0105/lab-wordpress-k8s-ec2.git && cd lab-wordpress-k8s-ec2
+```
+
+2.  編輯 credentials ，將 AWS 具備創建 VPC 及 EC2 的 credentials 貼上。
+
+```ini
+[default]
+aws_access_key_id=<YOUR aws_access_key_id>
+aws_secret_access_key=<YOUR aws_secret_access_key>
+```
+
+
+3.  執行自動部屬腳本。
+
+```bash
+bash run.sh
+```
+
+
+Ansible 執行完成即可至瀏覽器訪問頁面
+
+![](https://i.imgur.com/ShugBO8.png)
+
+![](https://i.imgur.com/pB2Zidz.png)
+
+
+K8s 節點及POD
+
+![](https://i.imgur.com/wTZh2Om.png)
+
+Nginx 設定
+
+![](https://i.imgur.com/S26WpBz.png)
