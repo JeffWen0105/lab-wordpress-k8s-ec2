@@ -24,6 +24,14 @@ spec:
             value: wp
           - name: WORDPRESS_DB_NAME
             value: wp
+          - name: WORDPRESS_TITLE
+            value: Example_WebSite
+          - name:  WORDPRESS_EMAIL
+            value: example@example.com
+          - name: WORDPRESS_PASSWORD
+            value: example
+          - name: WORDPRESS_USER
+            value: example
   selector:
     matchLabels:
       app: wp
